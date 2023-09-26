@@ -1,3 +1,4 @@
+
 import Income from "./components/Income/Income";
 
 
@@ -32,6 +33,18 @@ function App() {
 
 </div>
   );
+
+
+import { useState } from 'react'
+
+
+import './App.css'
+
+
+function App() {
+  return <></>;
+
+
 }
 
 export default App;
