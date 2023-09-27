@@ -6,8 +6,8 @@ export function spendingReducer(state, action) {
       localStorage.setItem(
         "spendingData",
         JSON.stringify({
-           ...state,
-          spending: action.payload, 
+          ...state,
+          spending: action.payload,
           spendingData: {
             ...state.spendingData,
             [state.spendingType]: state.spendingData[state.spendingType]
@@ -15,10 +15,13 @@ export function spendingReducer(state, action) {
                 parseInt(action.payload)
               : parseInt(action.payload),
           },
-          dailyData:{
+          dailyData: {
             ...state,
-            dailyData:[...state.dailyData,{[new Date().toDateString()]:state.spendingData}]
-          }  
+            dailyData: [
+              ...state.dailyData,
+              { [new Date().toDateString()]: state.spendingData },
+            ],
+          },
         })
       );
       return {
@@ -30,7 +33,6 @@ export function spendingReducer(state, action) {
             ? state.spendingData[state.spendingType] + parseInt(state.spending)
             : parseInt(action.payload),
         },
-        
       };
 
     /* case "setSpendingData":
@@ -61,11 +63,14 @@ export function spendingReducer(state, action) {
           return acc;
         }, 0),
       };
-    case 'setDailyData':
+    case "setDailyData":
       return {
         ...state,
-        dailyData:[...state.dailyData,{[new Date().toDateString()]:state.spendingData}]
-      }  
+        dailyData: [
+          ...state.dailyData,
+          { [new Date().toDateString()]: state.spendingData },
+        ],
+      };
     default:
       return state;
   }
@@ -75,8 +80,8 @@ export const initialSpendingState = {
   spendingType: "Food",
   spending: 0,
   spendingData: localStorage.getItem("spendingData")
-  ? JSON.parse(localStorage.getItem("spendingData"))
-  : {},
+    ? JSON.parse(localStorage.getItem("spendingData"))
+    : {},
   totalSpending: 0,
-  dailyData:[],
+  dailyData: [],
 };

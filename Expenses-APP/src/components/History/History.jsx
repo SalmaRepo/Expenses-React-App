@@ -9,7 +9,6 @@ export default function History() {
   const [history, setHistory] = useState(false);
 
   const [selectedDate, setSelectedDate] = useState("");
-  console.log(spendingState.dailyData);
 
   console.log(selectedDate);
   let found = [];
@@ -18,9 +17,13 @@ export default function History() {
   let spendingValueHistory = [];
   if (selectedDate) {
     found = spendingState.dailyData.map((data, i) => data[selectedDate]);
-    finalFound = found.slice(-1)[0];
+
+    finalFound = found.slice(-1)[0] || {};
+    console.log(finalFound, "tgest123", found);
     spendingCategoryHistory = Object.keys(finalFound);
+
     spendingValueHistory = Object.values(finalFound);
+    console.log(spendingValueHistory);
   }
 
   return (
@@ -46,8 +49,7 @@ export default function History() {
           display: "flex",
           width: "50%",
           flexWrap: "wrap",
-          margin:'0 auto'
-          
+          margin: "0 auto",
         }}
       >
         {history && <button onClick={() => setHistory(false)}>x</button>}
@@ -64,13 +66,13 @@ export default function History() {
           {history &&
             (selectedDate ? (
               spendingCategoryHistory.map((data) => {
+                typeof data === "object" && JSON.stringify(data);
                 return (
                   <p
                     style={{
                       display: "flex",
                       flexDirection: "column",
                       width: "50%",
-                      
                     }}
                   >
                     {data}
@@ -83,23 +85,24 @@ export default function History() {
         </div>
         <div style={{ display: "flex", flexDirection: "column", width: "50%" }}>
           {history &&
-             (selectedDate ? (
-                spendingValueHistory.map((data) => {
-                  return (
-                    <p
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        width: "50%",
-                      }}
-                    >
-                      {data}
-                    </p>
-                  );
-                })
-              ) : (
-                <p>select the date</p>
-              ))}
+            (selectedDate ? (
+              spendingValueHistory.map((data) => {
+                typeof data === "object" && JSON.stringify(data);
+                return (
+                  <p
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      width: "50%",
+                    }}
+                  >
+                    {data}
+                  </p>
+                );
+              })
+            ) : (
+              <p>select the date</p>
+            ))}
         </div>
       </div>
     </div>
