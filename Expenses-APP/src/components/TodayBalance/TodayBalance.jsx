@@ -1,14 +1,42 @@
 import { useState, useContext, useEffect } from "react";
 import { IncomeContext } from "../../contexts/IncomeContext/incomeContext";
 import { SpendingContext } from "../../contexts/SpendingContext/spendingContext";
+import "./todayBalance.css";
 export default function TodayBalance() {
   let today = new Date().toDateString();
   /* let initialHistory=localStorage.getItem('historyData')?JSON.parse(localStorage.getItem('historyData')):[]; */
   /* const [dailyData, setDailyData] = useState(initialHistory); */
   const { incomeState } = useContext(IncomeContext);
   const { spendingState } = useContext(SpendingContext);
- 
-/*   useEffect(() => {
+
+  console.log(incomeState.totalIncome, spendingState.totalSpending);
+  let previousSpendingData = JSON.parse(localStorage.getItem("spendingData"))
+    ? JSON.parse(localStorage.getItem("spendingData"))
+    : spendingState.spendingData;
+  let previousSpending = JSON.parse(localStorage.getItem("spendingData"))
+    ? Object.values(
+        JSON.parse(localStorage.getItem("spendingData")).spendingData
+      ).reduce((acc, data) => {
+        acc += data;
+        return acc;
+      }, 0)
+    : spendingState.totalSpending;
+  console.log(previousSpending);
+
+  let previousIncomeData = JSON.parse(localStorage.getItem("incomeData"))
+    ? JSON.parse(localStorage.getItem("incomeData"))
+    : incomeState.incomeData;
+  let previousIncome = JSON.parse(localStorage.getItem("incomeData"))
+    ? Object.values(
+        JSON.parse(localStorage.getItem("incomeData")).incomeData
+      ).reduce((acc, data) => {
+        acc += data;
+        return acc;
+      }, 0)
+    : incomeState.totalIncome;
+  console.log(previousIncome);
+
+  /*   useEffect(() => {
     setDailyData([
       ...dailyData,
       {
@@ -22,29 +50,43 @@ export default function TodayBalance() {
   
   }, [spendingState.spending]); */
 
-/* 
+  /* 
   console.log("dailyData", dailyData); */
+  console.log(`${new Date().getHours()}.${new Date().getMinutes()}`);
 
-  let todaySpent=  spendingState.totalSpending;;
-  let todayBalance =incomeState.totalIncome-spendingState.totalSpending
-  if (parseInt(new Date().getHours())>0 && parseInt(new Date().getHours())<= 24) {
-    
-    todaySpent=  spendingState.totalSpending;
-  }else if(parseInt(new Date().getHours())===0){
-    todaySpent=  0;
+  let todaySpent = previousSpending;
+  let todayBalance = previousIncome - previousSpending;
+  if (
+    parseInt(new Date().getHours()) > 0 &&
+    parseInt(new Date().getHours()) <= 24
+  ) {
+    todaySpent = previousSpending;
+  } else if (parseInt(new Date().getHours()) === 0) {
+    todaySpent = 0;
   }
 
-  console.log(todayBalance)
+  console.log(todayBalance);
 
-  
   return (
-    <div>
-      <h3>spending for today {new Date().toDateString()}</h3>
-      <p>todaySpent={todaySpent}</p>
-<p>Income:${incomeState.totalIncome}</p>
-<p>todayBalance={todayBalance}</p>
+    <div className="displays">
+      <h4>{`${new Date().getDate()}/${new Date().getMonth()+1}/${new Date().getFullYear()}`}</h4>
+      <div className="incomeBalanceDisp">
+        <div>
+          <h3>Income:</h3>
+          <p>{previousIncome} EUR</p>
+        </div>
 
-
+        <div>
+          <h3>Balance:</h3>
+          <p> {todayBalance} EUR</p>
+        </div>
+      </div>
+      
+      <div className="balanceToday">
+      <h3>Expenditure for Today - {new Date().toDateString()}</h3>
+      <p>{todaySpent} EUR</p>
+      </div>
+     
     </div>
   );
 }

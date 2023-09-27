@@ -16,13 +16,7 @@ function App() {
       </LandingPageContext>
 
       <div
-        style={{
-          width: '50%',
-          margin: '0 auto',
-          backgroundColor: 'lightYellow',
-          border: '2px solid black',
-          padding: '2rem',
-        }}
+         className='appClassForCalculations'
       >
         <IncomeContextProvider>
           <SpendingContextProvider>
@@ -35,6 +29,7 @@ function App() {
         </IncomeContextProvider>
       </div>
     </>
+ 
   );
 }
 
