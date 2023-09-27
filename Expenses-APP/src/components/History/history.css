@@ -1,0 +1,60 @@
+.historyContainer{
+    width: 100%;
+    background-color: white;
+    padding: 1rem;
+    font-size: 1rem;
+    position: relative;
+    padding: 3rem;
+}
+
+.historyDate{
+    position: absolute;
+    top: 2.5rem;
+    right: 1rem;
+    font-size: 1.2rem;
+    
+    padding: 0.5rem;
+    background-color: none;
+    box-shadow: 2px 2px 5px 1px gray;
+    border: none;
+   
+    width: 10rem;
+    appearance: none;
+    border: 1px solid rgb(48, 220, 82);
+}
+
+.selectedDate{
+    color:rgb(48, 220, 82) ;
+    font-weight:bold ;
+    
+}
+
+.historyData{
+display: flex;
+justify-content: space-between;
+width: 50%;
+margin: 2rem auto;
+padding: 6rem 0;
+height: 8rem;
+overflow-y: auto;
+border: 1px solid rgb(48, 220, 82) ;
+align-items: center;
+}
+
+.historyData::-webkit-scrollbar{
+  
+    background: #f1f1f1;
+    width: 7px;
+}
+
+.historyData::-webkit-scrollbar-thumb {
+    background:rgb(48, 220, 82); 
+    border-radius: 10px;
+  }
+
+.spendingHistoryType{
+    display:flex;
+    flex-direction:column ;
+    width: 50%;
+    
+}
