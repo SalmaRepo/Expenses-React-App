@@ -10,7 +10,7 @@ import History from "./components/History/History";
 
 function App() {
   return( 
-    <div style={{width:'50%',margin:'0 auto',backgroundColor:'lightYellow',border:'2px solid black',padding:'2rem'}}>
+    <div  className='appClassForCalculations'  >
 <IncomeContextProvider>
 
 
@@ -18,10 +18,11 @@ function App() {
 
 
 <TodayBalance/>
+<History/>
 <Income/>
   <Spending/>
  
- <History/>
+ 
   
 </SpendingContextProvider>
 
