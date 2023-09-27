@@ -1,6 +1,6 @@
 import { useContext, useState, useRef } from "react";
-import { IncomeContext } from "../../contexts/IncomeContext/incomeContext";
-import { SpendingContext } from "../../contexts/SpendingContext/spendingContext";
+import { IncomeContext } from "../../contexts/IncomeContext/IncomeContext";
+import { SpendingContext } from "../../contexts/SpendingContext/SpendingContext";
 
 export default function History() {
   const { incomeState } = useContext(IncomeContext);

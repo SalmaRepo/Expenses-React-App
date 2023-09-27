@@ -1,5 +1,6 @@
 import { useContext,useRef,useEffect, useState } from "react"
-import { IncomeContext } from "../../contexts/IncomeContext/incomeContext"
+import { IncomeContext } from "../../contexts/IncomeContext/IncomeContext";
+// import { IncomeContext } from "../..IncomeContext/contexts/IncomeContext/IncomeContext"
 
 export default function Income(){
    const {incomeState,incomeDispatch}=useContext(IncomeContext);
