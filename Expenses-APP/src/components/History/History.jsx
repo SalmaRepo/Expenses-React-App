@@ -6,44 +6,70 @@ export default function History() {
   const { incomeState } = useContext(IncomeContext);
   let selectedHistoryDate = useRef();
   const { spendingState } = useContext(SpendingContext);
-  const [history, setHistory] = useState(false);
-
-  const [selectedDate, setSelectedDate] = useState("");
+  let initialHistory=localStorage.getItem('historyToggle')?localStorage.getItem('historyToggle'):false
+  const [history, setHistory] = useState(initialHistory);
+  let previousSelectedDate=localStorage.getItem('selectedDate')?localStorage.getItem('historyToggle'):''
+  const [selectedDate, setSelectedDate] = useState(new Date().toDateString());
+  const [dateSelected,setDateSelected]=useState(false);
+  console.log(spendingState.dailyData);
 
   console.log(selectedDate);
   let found = [];
   let finalFound = {};
   let spendingCategoryHistory = [];
   let spendingValueHistory = [];
-  if (selectedDate) {
-    found = spendingState.dailyData.map((data, i) => data[selectedDate]);
-
-    finalFound = found.slice(-1)[0] || {};
-    console.log(finalFound, "tgest123", found);
-    spendingCategoryHistory = Object.keys(finalFound);
-
-    spendingValueHistory = Object.values(finalFound);
-    console.log(spendingValueHistory);
+  
+  if(!dateSelected){
+    found=JSON.parse(localStorage.getItem("spendingData"))
+    ? JSON.parse(
+        localStorage.getItem("spendingData")
+      ).dailyData.dailyData.map((data, i) => data[selectedDate])
+    :  spendingState.dailyData.length>=1?spendingState.dailyData.map((data, i) => {
+      
+      return data[selectedDate]
+    }):false;
+  finalFound = found.length>=1?found.slice(-1)[0]:{noDATA:0};
+  spendingCategoryHistory =Object.keys(finalFound);
+  spendingValueHistory = Object.values(finalFound);
+  }else if(dateSelected){
+    found=JSON.parse(localStorage.getItem("spendingData"))
+    ? JSON.parse(
+        localStorage.getItem("spendingData")
+      ).dailyData.dailyData.map((data, i) => data[selectedDate]?data[selectedDate]:false)
+    :  spendingState.dailyData.length>=1?spendingState.dailyData.map((data, i) => {
+      
+      return data[selectedDate]?data[selectedDate]:false
+    }):false;
+  finalFound = found.length>=1?found.slice(-1)[0]:{noDATA:0};
+  spendingCategoryHistory =Object.keys(finalFound);
+  spendingValueHistory = Object.values(finalFound);
   }
+   
+  console.log(found)
+  console.log(finalFound)
 
   return (
     <div>
       <h3>History</h3>
-      {history && (
+
         <input
           type="date"
-          onChange={(e) =>
-            setSelectedDate(new Date(e.target.value).toDateString())
-          }
+          onChange={(e) =>{
+            setSelectedDate(new Date(e.target.value).toDateString());
+            setDateSelected(true)
+            localStorage.setItem('selectedDate',new Date(e.target.value).toDateString())
+          }}
         />
-      )}
-      <button
+      
+     {/*  <button
         onClick={() => {
+          
           setHistory(!history);
+          localStorage.setItem('historyToggle',!history)
         }}
       >
         +
-      </button>
+      </button> */}
       <div
         style={{
           display: "flex",
@@ -52,8 +78,8 @@ export default function History() {
           margin: "0 auto",
         }}
       >
-        {history && <button onClick={() => setHistory(false)}>x</button>}
-        {history && selectedDate && (
+        {<button onClick={() => setHistory(false)}>x</button>}
+        { (
           <p>History of spendings on {selectedDate}</p>
         )}
 
@@ -63,8 +89,7 @@ export default function History() {
             flexDirection: "column",
           }}
         >
-          {history &&
-            (selectedDate ? (
+          { (
               spendingCategoryHistory.map((data) => {
                 typeof data === "object" && JSON.stringify(data);
                 return (
@@ -79,15 +104,11 @@ export default function History() {
                   </p>
                 );
               })
-            ) : (
-              <p>select the date</p>
-            ))}
+            ) }
         </div>
         <div style={{ display: "flex", flexDirection: "column", width: "50%" }}>
-          {history &&
-            (selectedDate ? (
+          { (
               spendingValueHistory.map((data) => {
-                typeof data === "object" && JSON.stringify(data);
                 return (
                   <p
                     style={{
@@ -100,9 +121,7 @@ export default function History() {
                   </p>
                 );
               })
-            ) : (
-              <p>select the date</p>
-            ))}
+            ) }
         </div>
       </div>
     </div>

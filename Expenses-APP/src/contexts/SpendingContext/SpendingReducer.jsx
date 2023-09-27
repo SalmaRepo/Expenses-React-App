@@ -30,7 +30,7 @@ export function spendingReducer(state, action) {
         spendingData: {
           ...state.spendingData,
           [state.spendingType]: state.spendingData[state.spendingType]
-            ? state.spendingData[state.spendingType] + parseInt(state.spending)
+            ? state.spendingData[state.spendingType] + parseInt(action.payload)
             : parseInt(action.payload),
         },
       };
@@ -56,27 +56,34 @@ export function spendingReducer(state, action) {
         },
       }; */
     case "setTotalSpending":
+     
       return {
         ...state,
-        totalSpending: Object.values(state.spendingData).reduce((acc, data) => {
+        totalSpending: state.spendingData&&Object.values(state.spendingData).reduce((acc, data) => {
           acc += parseInt(data);
           return acc;
-        }, 0),
+        }, 0)
       };
-    case "setDailyData":
+    case 'setDailyData':
+      
+
       return {
         ...state,
-        dailyData: [
-          ...state.dailyData,
-          { [new Date().toDateString()]: state.spendingData },
-        ],
-      };
+        dailyData:[...state.dailyData,{[new Date().toDateString()]:state.spendingData}]
+      } 
+
+      case 'loggedinUser':
+        return {
+          ...state,
+          userId:action.payload
+        }
     default:
       return state;
   }
 }
 
 export const initialSpendingState = {
+  userId:null,
   spendingType: "Food",
   spending: 0,
   spendingData: localStorage.getItem("spendingData")
