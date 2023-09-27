@@ -1,24 +1,28 @@
 import { useContext,useRef,useEffect } from "react"
-import { MainContext } from "../../contexts/mainContext"
+import { IncomeContext } from "../../contexts/IncomeContext/IncomeContext";
+// import { IncomeContext } from "../../contexts/IncomeContext/incomeContext"
 
 export default function Income(){
-    const {setIncome,setIncomeType,income,incomeType,setIncomeData,incomeData}=useContext(MainContext);
+   const {incomeState,incomeDispatch}=useContext(IncomeContext)
     const incomeValue=useRef();
     const incomeTypeValue=useRef();
-    console.log(incomeData);
-    useEffect(()=>{
-        setIncomeData({...incomeData,[incomeType]:income})
-    },[income])
-
-    let totalIncome=Object.values(incomeData).reduce((acc,data)=>{
+    console.log(incomeState.incomeData)
+     useEffect(()=>{
+        incomeDispatch({type:'setIncomeData',payload:{...incomeState.incomeData,[incomeState.incomeType]:incomeState.income}})
+        
+    },[incomeState.income]) 
+    
+    localStorage.setItem('incomeDataStorage',JSON.stringify(incomeState.incomeData))
+    
+     let totalIncome=Object.values(incomeState.incomeData).reduce((acc,data)=>{
         acc+=parseInt(data)
         return acc
-    },0)
+    },0)  
     return(
         <div>
            {/* <p>{income}</p>
            <p>{incomeType}</p> */}
-           <p>total Income:{totalIncome}</p>
+           <p>total Income:${totalIncome}</p>
             <select name="income" ref={incomeTypeValue} >
                 <option value='salary'>Salary</option>
                 <option value='shares'>Shares</option>
@@ -27,8 +31,8 @@ export default function Income(){
             
             <input type="text" ref={incomeValue} />
             <button onClick={()=>{
-                setIncome(incomeValue.current.value),
-                setIncomeType(incomeTypeValue.current.value)
+                incomeDispatch({type:'setIncome',payload:incomeValue.current.value})
+                incomeDispatch({type:'setIncomeType',payload:incomeTypeValue.current.value})
                }}>Income Submit
             </button>
         </div>

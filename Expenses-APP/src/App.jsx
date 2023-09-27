@@ -1,18 +1,28 @@
-
 import Income from "./components/Income/Income";
-import ContextProvider from "./contexts/ContextProvider";
-import { MainContext } from "./contexts/mainContext";
-import './App.css';
+
+import "./App.css";
+import IncomeContextProvider from "./contexts/IncomeContext/IncomeContextProvider";
+import SpendingContextProvider from "./contexts/SpendingContext/SpendingContextProvidr";
+import Spending from "./components/Spending/Spending";
 
 function App() {
-  return( 
-  
-<ContextProvider>
+  return (
+    <div
+      style={{
+        width: "50%",
+        margin: "0 auto",
+        backgroundColor: "lightYellow",
+        border: "2px solid black",
+      }}
+    >
+      <IncomeContextProvider>
+        <Income />
+      </IncomeContextProvider>
 
-<Income/>
-
-</ContextProvider>
-
+      <SpendingContextProvider>
+        <Spending />
+      </SpendingContextProvider>
+    </div>
   );
 }
 
