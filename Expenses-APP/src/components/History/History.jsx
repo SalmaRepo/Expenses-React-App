@@ -1,14 +1,14 @@
 import { useContext, useState, useRef } from "react";
 import { IncomeContext } from "../../contexts/IncomeContext/incomeContext";
 import { SpendingContext } from "../../contexts/SpendingContext/spendingContext";
-
+import './history.css'
 export default function History() {
   const { incomeState } = useContext(IncomeContext);
   let selectedHistoryDate = useRef();
   const { spendingState } = useContext(SpendingContext);
   let initialHistory=localStorage.getItem('historyToggle')?localStorage.getItem('historyToggle'):false
   const [history, setHistory] = useState(initialHistory);
-  let previousSelectedDate=localStorage.getItem('selectedDate')?localStorage.getItem('historyToggle'):''
+  let previousSelectedDate=localStorage.getItem('selectedDate')?localStorage.getItem('selectedDate'):''
   const [selectedDate, setSelectedDate] = useState(new Date().toDateString());
   const [dateSelected,setDateSelected]=useState(false);
   console.log(spendingState.dailyData);
@@ -40,7 +40,7 @@ export default function History() {
       
       return data[selectedDate]?data[selectedDate]:false
     }):false;
-  finalFound = found.length>=1?found.slice(-1)[0]:{noDATA:0};
+  finalFound = found.slice(-1)[0]?found.slice(-1)[0]:{NoDataFound:''};
   spendingCategoryHistory =Object.keys(finalFound);
   spendingValueHistory = Object.values(finalFound);
   }
@@ -49,10 +49,11 @@ export default function History() {
   console.log(finalFound)
 
   return (
-    <div>
-      <h3>History</h3>
+    <div className="historyContainer">
+      <h3>History of Spendings on <span className="selectedDate">{selectedDate}</span></h3>
 
         <input
+        className="historyDate"
           type="date"
           onChange={(e) =>{
             setSelectedDate(new Date(e.target.value).toDateString());
@@ -70,42 +71,37 @@ export default function History() {
       >
         +
       </button> */}
+      
       <div
-        style={{
-          display: "flex",
-          width: "50%",
-          flexWrap: "wrap",
-          margin: "0 auto",
-        }}
+        className="historyData"
       >
-        {<button onClick={() => setHistory(false)}>x</button>}
-        { (
-          <p>History of spendings on {selectedDate}</p>
-        )}
+
+        
 
         <div
           style={{
             display: "flex",
             flexDirection: "column",
+            gap:'1rem',
+            width:'50%',
+           
+            alignItems:'center'
+           
           }}
         >
           { (
               spendingCategoryHistory.map((data) => {
                 return (
                   <p
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      width: "50%",
-                    }}
+                    className="spendingHistoryType"
                   >
-                    {data}
+                    {data[0].toUpperCase()+data.slice(1)}
                   </p>
                 );
               })
             ) }
         </div>
-        <div style={{ display: "flex", flexDirection: "column", width: "50%" }}>
+        <div style={{ display: "flex", flexDirection: "column", width: "50%",gap:'1rem', alignItems:'center' }}>
           { (
               spendingValueHistory.map((data) => {
                 return (
@@ -116,7 +112,7 @@ export default function History() {
                       width: "50%",
                     }}
                   >
-                    {data}
+                    {data} EUR
                   </p>
                 );
               })

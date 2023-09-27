@@ -21,10 +21,11 @@ function App() {
         <IncomeContextProvider>
           <SpendingContextProvider>
             <TodayBalance />
+
+            <History />
             <Income />
             <Spending />
 
-            <History />
           </SpendingContextProvider>
         </IncomeContextProvider>
       </div>

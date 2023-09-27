@@ -30,7 +30,7 @@ export default function Spending() {
       <div className="spendingContainer">
         <div className="selectSpendingContainer">
           <select name="spending" ref={spendingTypeValue} className='spendingSelect'>
-            <option value="food">Food</option>
+            <option value="food">Food </option>
             <option value="home">Home</option>
             <option value="shopping">Shopping</option>
             <option value="holidays">Holidays</option>
