@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import { SpendingContext } from "./SpendingContext";
+import { SpendingContext } from "./spendingContext";
 import { initialSpendingState, spendingReducer } from "./SpendingReducer";
 
 export default function SpendingContextProvider({ children }) {

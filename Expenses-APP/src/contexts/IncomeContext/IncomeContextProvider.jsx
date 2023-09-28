@@ -1,6 +1,6 @@
 import { useContext, useState, useReducer } from "react";
-import { IncomeContext } from "./IncomeContext";
-import { incomeInitialState, incomeReducer } from "./IncomeReducer";
+import { IncomeContext } from "./incomeContext";
+import { incomeInitialState, incomeReducer } from "./incomeReducer";
 
 export default function IncomeContextProvider({ children }) {
   const [incomeState, incomeDispatch] = useReducer(
