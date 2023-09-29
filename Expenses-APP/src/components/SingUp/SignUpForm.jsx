@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRef } from 'react';
 import { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { MainContext } from '../../contexts/LandingPageContext/landingPageContext';
 
 export default function SignUpForm() {
@@ -9,6 +9,7 @@ export default function SignUpForm() {
   const userNameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
+  const navigate=useNavigate()
 
   const handleSignUp = () => {
     dispatch({
@@ -19,7 +20,7 @@ export default function SignUpForm() {
         password: Number(passwordRef.current.value),
       },
     });
-
+   navigate('/')
     userNameRef.current.value = '';
     emailRef.current.value = '';
     passwordRef.current.value = '';

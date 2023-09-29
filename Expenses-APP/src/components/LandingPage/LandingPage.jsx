@@ -1,13 +1,16 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Routes, Route,Link } from 'react-router-dom';
+
 import LoginForm from '../Login/LoginForm';
 import SignUpForm from '../SingUp/SignUpForm';
 import './landingPage.css';
 
 export default function LandingPage() {
+
   return (
     <div className='landing-page'>
-      <h1>Expenses APP</h1>
+      <h1>Expenses Tracker APP</h1>
+   
 
       <Routes>
         <Route path='/' element={<LoginForm />} />
