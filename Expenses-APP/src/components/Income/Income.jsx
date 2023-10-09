@@ -22,7 +22,7 @@ export default function Income() {
   }
 
   return (
-    <div className="incomeDetails">
+    <div className="incomeDetails animateCard">
       {/* <p>{income}</p>
            <p>{incomeType}</p> */}
       <h3>

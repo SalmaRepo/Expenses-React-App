@@ -3,12 +3,10 @@
   border: 0;
   box-sizing: border-box;
 }
-
 /* ***** STYLES for --H1-- && --FOOTER-- on the --LogIn-- && --SignUp-- PAGES */
 .landing-page {
-  width: 500px;
-  height: 600px;
-  margin: 15px auto;
+  height: 100vh;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,73 +17,194 @@
     rgb(63, 125, 179) 35%,
     rgb(112, 191, 217) 100%
   );
+  background: linear-gradient(
+    320deg,
+    rgb(112, 191, 217) 0%,
+    rgb(63, 125, 179) 75%,
+    rgb(40, 100, 205) 100%
+  );
 }
 .landing-page h1 {
   color: silver;
-  font-size: 45px;
+  color: rgb(206, 202, 202);
+  font-size: 55px;
   font-family: Arial, Helvetica, sans-serif;
   letter-spacing: 1px;
-  width: 250px;
-  line-height: 1.5;
+  line-height: 1.3;
   text-align: center;
+  padding: 50px 20px;
+  width: 650px;
+  border-right: 1.5px solid silver;
+  border-radius: 50%;
 }
-
 .landing-page footer {
   display: flex;
   justify-content: center;
   gap: 5px;
+  font-size: 20px;
   text-shadow: 1px 2px 15px rgb(19, 115, 109);
   font-family: Arial, Helvetica, sans-serif;
   color: rgb(198, 235, 233);
-  margin-top: 30%;
+  margin-top: 150px;
 }
-
 .landing-page footer a {
   color: rgb(224, 243, 238);
   font-weight: bold;
-  font-size: 19px;
+  font-size: 25px;
   letter-spacing: 0.5px;
   text-decoration: none;
   line-height: 0.8;
 }
-
 .landing-page footer a:hover {
-  font-size: 20px;
+  font-size: 26px;
   text-shadow: 5px 3px 10px rgb(65, 78, 81);
 }
-
 /* ***** STYLES for the --LogIn-- && --SignUp-- FORMS: */
 .logIn-signUp-form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 300px;
+  width: 350px;
   margin: auto;
 }
-
 .logIn-signUp-form input {
-  color: #2c4179;
-  border-radius: 15px;
+  font-size: 16px;
+  color: #2C4179;
+  border-radius: 20px;
   box-shadow: 3px 3px 7px #364775;
-  padding: 11px;
+  padding: 11px 15px;
 }
-
 .logIn-signUp-form button {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 20px;
   letter-spacing: 1px;
   color: rgb(246, 244, 236);
   background-color: rgb(59, 104, 181);
   border: 0;
   border-radius: 15px;
-  box-shadow: 3px 3px 7px #2c4179;
+  box-shadow: 3px 3px 7px #2C4179;
   padding: 7px;
   padding-top: 10px;
 }
-
 .logIn-signUp-form button:hover {
   transform: scale(1.05);
-  background-color: #3b508a;
+  background-color: #3B508A;
 }
+.logIn-signUp-form button a {
+  text-decoration: none;
+  color: rgb(246, 244, 236);
+}
+@media screen and (max-width: 798px) {
+  .landing-page h1 {
+    font-size: 40px;
+    padding: 40px 30px;
+    width: 450px;
+  }
+}* {
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+/* ***** STYLES for --H1-- && --FOOTER-- on the --LogIn-- && --SignUp-- PAGES */
+.landing-page {
+  height: 100vh;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background: linear-gradient(
+    180deg,
+    rgb(40, 100, 205) 0%,
+    rgb(63, 125, 179) 35%,
+    rgb(112, 191, 217) 100%
+  );
+  background: linear-gradient(
+    320deg,
+    rgb(112, 191, 217) 0%,
+    rgb(63, 125, 179) 75%,
+    rgb(40, 100, 205) 100%
+  );
+}
+.landing-page h1 {
+  color: silver;
+  color: rgb(206, 202, 202);
+  font-size: 55px;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 1px;
+  line-height: 1.3;
+  text-align: center;
+  padding: 50px 20px;
+  width: 650px;
+  border-right: 1.5px solid silver;
+  border-radius: 50%;
+}
+.landing-page footer {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  font-size: 20px;
+  text-shadow: 1px 2px 15px rgb(19, 115, 109);
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(198, 235, 233);
+  margin-top: 150px;
+}
+.landing-page footer a {
+  color: rgb(224, 243, 238);
+  font-weight: bold;
+  font-size: 25px;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  line-height: 0.8;
+}
+.landing-page footer a:hover {
+  font-size: 26px;
+  text-shadow: 5px 3px 10px rgb(65, 78, 81);
+}
+/* ***** STYLES for the --LogIn-- && --SignUp-- FORMS: */
+.logIn-signUp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 350px;
+  margin: auto;
+}
+.logIn-signUp-form input {
+  font-size: 16px;
+  color: #2C4179;
+  border-radius: 20px;
+  box-shadow: 3px 3px 7px #364775;
+  padding: 11px 15px;
+}
+.logIn-signUp-form button {
+  font-weight: bold;
+  font-size: 20px;
+  letter-spacing: 1px;
+  color: rgb(246, 244, 236);
+  background-color: rgb(59, 104, 181);
+  border: 0;
+  border-radius: 15px;
+  box-shadow: 3px 3px 7px #2C4179;
+  padding: 7px;
+  padding-top: 10px;
+}
+.logIn-signUp-form button:hover {
+  transform: scale(1.05);
+  background-color: #3B508A;
+}
+.logIn-signUp-form button a {
+  text-decoration: none;
+  color: rgb(246, 244, 236);
+}
+<<<<<<< HEAD
 
 
+=======
+@media screen and (max-width: 798px) {
+  .landing-page h1 {
+    font-size: 40px;
+    padding: 40px 30px;
+    width: 450px;
+  }
+}
+>>>>>>> 3e9e26304329e87b4bd65866670cac7c817afb67

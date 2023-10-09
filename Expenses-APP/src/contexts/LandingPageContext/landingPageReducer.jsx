@@ -2,11 +2,23 @@ import { v4 as uuidv4 } from 'uuid';
 
 export function mainReducer(state, action) {
   switch (action.type) {
+  /*   case 'logOut':
+      return{
+        ...state,
+        loggedOut:false,
+         
+      }*/
+      case 'logOut':
+      return {
+        ...state,
+        loggedIn: false,
+        activeUser: [],
+      };
     case 'logIn':
       return {
         ...state,
-        loggedIn: 'true',
-        activeUser: state.users.filter(
+        loggedIn: true,
+        activeUser: state.users.find(
           (elem) =>
             (elem.password === Number(action.payload.password) &&
               elem.email === action.payload.email) ||
@@ -30,6 +42,7 @@ export const initialState = {
       email: 'ania@o2.pl',
       password: 111,
       id: uuidv4(),
+      userData:[]
     },
     {
       userName: 'Salma',
@@ -50,6 +63,7 @@ export const initialState = {
       id: uuidv4(),
     },
   ],
-  loggedIn: 'false',
+  loggedIn: false,
+  loggedOut:true,
   activeUser: [],
 };

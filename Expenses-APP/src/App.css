@@ -1,16 +1,88 @@
-.appClassForCalculations{
+.appClassForCalculations {
   background-color: white;
   border: 2px solid rgb(236, 229, 229);
-  border-radius: 2rem;
+  border-radius: 1rem;
   width: 50%;
   margin: 0 auto;
-  background:linear-gradient(to top right,white,rgb(210, 229, 235));
+  /*   background:linear-gradient(to bottom right,white,rgb(113, 229, 151));  */
+
   padding: 2rem;
   margin-top: 4rem;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   gap: 1rem;
   align-items: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   box-shadow: 2px 2px 2px 2px gray;
 }
+
+.appClassForCalculations .logOutButton{
+  align-self: flex-end;
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  width: 150px;
+  padding: 8px 0;
+  margin-top: 0;
+  margin-bottom: 10px;
+  background-color: #039EBD;
+  box-shadow: 2px 3px 8px #2C4179;
+  color: white;
+  font-weight: bold;
+}
+
+.appClassForCalculations .logOutButton:hover {
+  transform: scale(1.1);
+  background-color: #01839B;
+}
+
+img {
+  width: 5rem;
+  object-fit:cover;
+
+  border-radius: 50%;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  border: 1px solid;
+  justify-content: space-between;
+  background-color: rgb(143, 237, 189);
+}
+
+.animateCard {
+  animation: anim 1s ease backwards;
+}
+.animateCard:nth-child(1) {
+  animation-delay: 0.5s;
+}
+.animateCard:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.animateCard:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.animateCard:nth-child(4) {
+  animation-delay: 0.8s;
+}
+.animateCard:nth-child(5) {
+  animation-delay: 1s;
+}
+.animateCard:nth-child(7) {
+  animation-delay: 2s;
+}
+
+@keyframes anim {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(1rem);
+  }
+}
+
+

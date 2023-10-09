@@ -17,17 +17,31 @@ export default function Spending() {
         acc+=parseInt(data)
         return acc
     },0)  */
+
+    useEffect(()=>{
+    spendingState.spendingData=localStorage.getItem("spendingData")
+    ? JSON.parse(localStorage.getItem("spendingData")).spendingData
+    : {}
+
+    spendingState.dailyData= localStorage.getItem("spendingData")
+    ? JSON.parse(localStorage.getItem("spendingData")).dailyData
+    : []
+
+    console.log(spendingState.spendingData);
+    console.log(spendingState.dailyData)
+    },[])
   console.log(spendingState.spendingData);
+  console.log(spendingState.dailyData)
 
   if (spedingSubmit) {
     spendingValue.current.value = null;
   }
 
   return (
-    <div className="spendingDetails">
+    <div className="spendingDetails animateCard">
       {/*    <p>totalSpending:${spendingState.totalSpending}</p> */}
   <h3>Enter Your Expenses<span style={{ fontSize: "1rem" }}>(in categories)</span></h3>
-      <div className="spendingContainer">
+      <div className="spendingContainer ">
         <div className="selectSpendingContainer">
           <select name="spending" ref={spendingTypeValue} className='spendingSelect'>
             <option value="food">Food </option>
@@ -53,8 +67,8 @@ export default function Spending() {
               type: "setSpending",
               payload: spendingValue.current.value,
             });
-            spendingDispatch({ type: "setDailyData" });
-            spendingDispatch({ type: "setTotalSpending" });
+      /*   spendingDispatch({ type: "setDailyData" }); */
+            spendingDispatch({ type: "setTotalSpending" }); 
             setSpendingSubmit(true);
           }}
         >

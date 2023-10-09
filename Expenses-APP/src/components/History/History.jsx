@@ -1,9 +1,7 @@
-import { useContext, useState, useRef } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import { IncomeContext } from "../../contexts/IncomeContext/incomeContext";
 import { SpendingContext } from "../../contexts/SpendingContext/spendingContext";
-import { v4 as uuidv4 } from "uuid";
 import "./history.css";
-
 export default function History() {
   const { incomeState } = useContext(IncomeContext);
   let selectedHistoryDate = useRef();
@@ -14,7 +12,7 @@ export default function History() {
   const [history, setHistory] = useState(initialHistory);
   let previousSelectedDate = localStorage.getItem("selectedDate")
     ? localStorage.getItem("selectedDate")
-    : "";
+    : new Date().toDateString();
   const [selectedDate, setSelectedDate] = useState(new Date().toDateString());
   const [dateSelected, setDateSelected] = useState(false);
   console.log(spendingState.dailyData);
@@ -25,39 +23,33 @@ export default function History() {
   let spendingCategoryHistory = [];
   let spendingValueHistory = [];
 
-  if (!dateSelected) {
-    found = JSON.parse(localStorage.getItem("spendingData"))
-      ? JSON.parse(
-          localStorage.getItem("spendingData")
-        ).dailyData.dailyData.map((data, i) =>
-          data[selectedDate] ? data[selectedDate] : false
-        )
-      : spendingState.dailyData.length >= 1
-      ? spendingState.dailyData.map((data, i) => {
-          return data[selectedDate] ? data[selectedDate] : false;
-        })
-      : false;
-    finalFound =
- /*      Array.isArray(found) && found.length > 0 && found.slice(-1)[0]
-        ? found.slice(-1)[0]
-        : { NoDataFound: "0" }; */
+  useEffect(() => {
+    if (!dateSelected) {
+      setDateSelected(new Date().toDateString());
+    }
+      
 
-    // if (Array.isArray(found) && found.length > 0) {
-    //   finalFound = found.slice(-1)[0];
-    // } else {
-    //   finalFound = { noDATA: 0 };
-    // }
-    // finalFound = found.length >= 1 ? found.slice(-1)[0] : { noDATA: 0 };
-    spendingCategoryHistory = Object.keys(finalFound);
-    spendingValueHistory = Object.values(finalFound);
-  } else if (dateSelected) {
+    console.log(found);
+  }, []);
+
+  console.log(spendingState.dailyData)
+
+  if(!dateSelected){
+   found= spendingState?.dailyData?.map((data, i) => {
+        return data[selectedDate];
+      });
+
+  finalFound = found.length >= 1 ? found.slice(-1)[0] : { noDATA: 0 };
+  spendingCategoryHistory = Object.keys(finalFound);
+  spendingValueHistory = Object.values(finalFound);
+
+
+  }else if (dateSelected) {
     found = JSON.parse(localStorage.getItem("spendingData"))
-      ? JSON.parse(
-          localStorage.getItem("spendingData")
-        ).dailyData.dailyData.map((data, i) =>
-          data[selectedDate] ? data[selectedDate] : false
+      ? JSON.parse(localStorage.getItem("spendingData")).dailyData.map(
+          (data, i) => (data[selectedDate] ? data[selectedDate] : false)
         )
-      : spendingState.dailyData.length >= 1
+      : spendingState.dailyData
       ? spendingState.dailyData.map((data, i) => {
           return data[selectedDate] ? data[selectedDate] : false;
         })
@@ -66,6 +58,33 @@ export default function History() {
     spendingCategoryHistory = Object.keys(finalFound);
     spendingValueHistory = Object.values(finalFound);
   }
+  console.log(found)
+
+  /*  if(!dateSelected){
+    found=JSON.parse(localStorage.getItem("spendingData"))
+    ? JSON.parse(
+        localStorage.getItem("spendingData")
+      ).dailyData.dailyData.map((data, i) => data[selectedDate]?data[selectedDate]:false)
+    :  spendingState.dailyData.length>=1?spendingState.dailyData.map((data, i) => {
+      
+      return data[selectedDate]?data[selectedDate]:false
+    }):false;
+  finalFound = found.length>=1?found.slice(-1)[0]:{noDATA:0};
+  spendingCategoryHistory =Object.keys(finalFound);
+  spendingValueHistory = Object.values(finalFound);
+   }else if(dateSelected){
+    found=JSON.parse(localStorage.getItem("spendingData"))
+    ? JSON.parse(
+        localStorage.getItem("spendingData")
+      ).dailyData.dailyData.map((data, i) => data[selectedDate]?data[selectedDate]:false)
+    :  spendingState.dailyData.length>=1?spendingState.dailyData.map((data, i) => {
+      
+      return data[selectedDate]?data[selectedDate]:false
+    }):false;
+  finalFound = found.slice(-1)[0]?found.slice(-1)[0]:{NoDataFound:'0'};
+  spendingCategoryHistory =Object.keys(finalFound);
+  spendingValueHistory = Object.values(finalFound);
+  } */
 
   console.log(found);
   console.log(finalFound);
@@ -90,6 +109,16 @@ export default function History() {
         }}
       />
 
+      {/*  <button
+        onClick={() => {
+          
+          setHistory(!history);
+          localStorage.setItem('historyToggle',!history)
+        }}
+      >
+        +
+      </button> */}
+
       <div className="historyData">
         <div
           style={{
@@ -103,7 +132,7 @@ export default function History() {
         >
           {spendingCategoryHistory.map((data) => {
             return (
-              <p className="spendingHistoryType" key={uuidv4()}>
+              <p className="spendingHistoryType">
                 {data[0].toUpperCase() + data.slice(1)}
               </p>
             );
@@ -126,7 +155,6 @@ export default function History() {
                   flexDirection: "column",
                   width: "50%",
                 }}
-                key={uuidv4()}
               >
                 {data} EUR
               </p>
