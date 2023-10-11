@@ -196,6 +196,10 @@
   text-decoration: none;
   color: rgb(246, 244, 236);
 }
+<<<<<<< HEAD
+
+
+=======
 @media screen and (max-width: 798px) {
   .landing-page h1 {
     font-size: 40px;
@@ -203,3 +207,4 @@
     width: 450px;
   }
 }
+>>>>>>> 3e9e26304329e87b4bd65866670cac7c817afb67
