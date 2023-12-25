@@ -85,4 +85,12 @@ img {
   }
 }
 
+@media (max-width:760px){
+  .appClassForCalculations{
+    font-size: 0.2rem;
+    width: 100%;
+    margin: 0rem;
+  }
+}
+
 

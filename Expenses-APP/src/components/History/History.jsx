@@ -13,7 +13,7 @@ export default function History() {
   let previousSelectedDate = localStorage.getItem("selectedDate")
     ? localStorage.getItem("selectedDate")
     : new Date().toDateString();
-  const [selectedDate, setSelectedDate] = useState(new Date().toDateString());
+  const [selectedDate, setSelectedDate] = useState(previousSelectedDate);
   const [dateSelected, setDateSelected] = useState(false);
   console.log(spendingState.dailyData);
 
@@ -38,8 +38,10 @@ export default function History() {
    found= spendingState.dailyData.map((data, i) => {
         return data[selectedDate];
       });
+ console.log(found)      
 
   finalFound = found.length >= 1 ? found.slice(-1)[0] : { noDATA: 0 };
+  
   spendingCategoryHistory = Object.keys(finalFound);
   spendingValueHistory = Object.values(finalFound);
 

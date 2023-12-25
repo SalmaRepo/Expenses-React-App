@@ -50,20 +50,24 @@ export default function TodayBalance() {
   
   }, [spendingState.spending]); */
 
-  /* 
+  /* at
   console.log("dailyData", dailyData); */
  /*  console.log(`${new Date().getHours()}.${new Date().getMinutes()}`); */
-
-  let todaySpent=previousSpending;
+let todaySpendData=spendingState.dailyData.map((data, i) => {
+  return data[new Date().toDateString()]}) 
+  console.log(todaySpendData)
+let todaySpendFound=     todaySpendData[0]!==undefined?todaySpendData.slice(-1)[0] : { noDATA: 0 };
+console.log(todaySpendFound)
+let todaySpent=Object.values(todaySpendFound).reduce((acc,value)=>{
+  acc+=value;
+  return acc
+},0)
+/*  console.log(spendingState.dailyData.filter(data=>{
+    return Object.values(data[new Date().toDateString()])===data[new Date().toDateString()]
+  })) */
+  
   let todayBalance = previousIncome - previousSpending;
-   if (
-    parseInt(new Date().getHours()) > 0 &&
-    parseInt(new Date().getHours()) <= 24
-  ) {
-   todaySpent = /* SON.parse(localStorage.getItem("spendingData"))? JSON.parse(localStorage.getItem("spendingData")).totalSpending:spendingState.totalSpending; */previousSpending
-  } else if (parseInt(new Date().getHours()) === 0) {
-    todaySpent = 0;
-  } 
+ 
 
   console.log(todayBalance);
 

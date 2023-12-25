@@ -21,24 +21,14 @@ export function spendingReducer(state, action) {
               [new Date().toDateString()]: { ...state.spendingData,
                 [state.spendingType]: state.spendingData[state.spendingType]
                   ? state.spendingData[state.spendingType] + parseInt(action.payload)
-                  : parseInt(action.payload),},
+                  : parseInt(action.payload),}
             },
-          ],
+          ], 
         })
       );
       return {
         ...state,
-        spendingType: state.spendingType,
-
-        dailyData: [
-          {
-            ...state.dailyData,
-            [new Date().toDateString()]: { ...state.spendingData,
-              [state.spendingType]: state.spendingData[state.spendingType]
-                ? state.spendingData[state.spendingType] + parseInt(action.payload)
-                : parseInt(action.payload),}
-          },
-        ],
+        
 
         spendingData: {
           ...state.spendingData,
@@ -47,7 +37,7 @@ export function spendingReducer(state, action) {
             : parseInt(action.payload),
         },
 
-    /*    dailyData: [
+       dailyData: [
           {
             ...state.dailyData,
             [new Date().toDateString()]: { ...state.spendingData,
@@ -55,7 +45,7 @@ export function spendingReducer(state, action) {
                 ? state.spendingData[state.spendingType] + parseInt(action.payload)
                 : parseInt(action.payload),}
           },
-        ],  */
+        ], 
       };
 
     /* case "setSpendingData":
