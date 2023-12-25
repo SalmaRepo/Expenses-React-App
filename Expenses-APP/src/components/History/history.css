@@ -60,3 +60,9 @@ align-items: center;
     width: 50%;
     
 }
+
+@media (max-width:760px){
+    .historyData{
+        width: 100%;
+    }
+}

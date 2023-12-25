@@ -34,3 +34,13 @@
     border-radius: 1rem;
     box-shadow: 2px 2px 2px 2px gray;
 }
+
+@media (max-width:760px){
+    .incomeBalanceDisp{
+        font-size: 1rem;
+    }
+
+    .balanceToday{
+        font-size: 1rem;
+    }
+}

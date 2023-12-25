@@ -62,4 +62,19 @@
   option {
     border-radius: 1rem;
   }
+
+  @media (max-width:760px){
+ .spendingDetails{
+  font-size: 1rem;
+ } 
+ 
+ .spendingSelect{
+  font-size: 1rem;
+ }
+
+ .spendingContainer{
+  flex-wrap: wrap;
+  font-size: 1rem;
+ }
+  }
   

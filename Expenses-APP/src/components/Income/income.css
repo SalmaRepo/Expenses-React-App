@@ -67,3 +67,9 @@
 option {
   border-radius: 1rem;
 }
+
+@media (max-width:760px){
+  .incomeContainer{
+    flex-wrap: wrap;
+  }
+}
